@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Dashboard</title>
+
+    <link rel="stylesheet" href="/static/style.css?v=2">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<h1>💰 Welcome, {{ username }}</h1>
+
+<h2>Total Spent: ₹{{ total }}</h2>
+
+<a href="/add" class="btn">➕ Add Expense</a>
+<a href="/logout" class="btn logout">🚪 Logout</a>
+
+<hr>
+
+<!-- ✅ Category Pie Chart -->
+<h2>📊 Category Expense Chart</h2>
+
+<div style="width: 400px; margin: auto;">
+    <canvas id="categoryChart"></canvas>
+</div>
+
+<script>
+    const catLabels = {{ category_totals.keys()|list|tojson }};
+    const catValues = {{ category_totals.values()|list|tojson }};
+
+    new Chart(document.getElementById("categoryChart"), {
+        type: "pie",
+        data: {
+            labels: catLabels,
+            datasets: [{
+                data: catValues
+            }]
+        }
+    });
+</script>
+
+<hr>
+
+<!-- ✅ Monthly Bar Chart -->
+<h2>📅 Monthly Expense Summary</h2>
+
+<div style="width: 600px; margin: auto;">
+    <canvas id="monthlyChart"></canvas>
+</div>
+
+<script>
+    const monthLabels = {{ monthly_totals.keys()|list|tojson }};
+    const monthValues = {{ monthly_totals.values()|list|tojson }};
+
+    new Chart(document.getElementById("monthlyChart"), {
+        type: "bar",
+        data: {
+            labels: monthLabels,
+            datasets: [{
+                data: monthValues
+            }]
+        }
+    });
+</script>
+
+<hr>
+
+<!-- Expense Table -->
+<h2>📋 Expense History</h2>
+
+<table>
+    <tr>
+        <th>Amount</th>
+        <th>Category</th>
+        <th>Note</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+
+    {% for exp in expenses %}
+    <tr>
+        <td>₹{{ exp.amount }}</td>
+        <td>{{ exp.category }}</td>
+        <td>{{ exp.note }}</td>
+        <td>{{ exp.date.strftime("%d-%m-%Y") }}</td>
+        <td><a href="/delete/{{ exp.id }}" class="delete">❌ Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

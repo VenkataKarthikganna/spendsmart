@@ -1,0 +1,341 @@
+/* ===============================
+   🌟 Expense Tracker Final UI CSS
+   Custom JPEG Background + Animations
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===============================
+   Body Background (Custom Image)
+   =============================== */
+
+body {
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+
+    /* ✅ Custom JPEG Background */
+    background: url("/static/bg.jpeg") no-repeat center center fixed;
+    background-size: cover;
+
+    min-height: 100vh;
+    padding: 30px;
+    position: relative;
+}
+
+/* ✅ Dark Overlay for Text Visibility */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    z-index: -1;
+}
+
+/* ===============================
+   Headings Animation
+   =============================== */
+
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+    animation: fadeDown 1s ease;
+}
+
+h2 {
+    color: white;
+    margin: 15px 0;
+    font-weight: 500;
+}
+
+/* Fade Down Animation */
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===============================
+   Buttons Styling + Glow
+   =============================== */
+
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    margin: 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+}
+
+/* Hover Effect */
+.btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.9);
+}
+
+/* Logout Button */
+.logout {
+    background: rgba(255, 0, 0, 0.35);
+}
+
+.logout:hover {
+    background: rgba(255, 0, 0, 0.65);
+}
+
+/* ===============================
+   Form Styling + Pop Animation
+   =============================== */
+
+form {
+    width: 360px;
+    margin: 30px auto;
+
+    background: rgba(255, 255, 255, 0.18);
+    padding: 25px;
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+
+    animation: popUp 0.8s ease;
+}
+
+/* Form Pop Animation */
+@keyframes popUp {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Input Fields */
+input, select {
+    width: 90%;
+    padding: 12px;
+    margin: 12px 0;
+
+    border: none;
+    border-radius: 12px;
+    outline: none;
+
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+/* Input Focus Glow */
+input:focus, select:focus {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.9);
+}
+
+/* Save Button */
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+
+    background: linear-gradient(to right, #43e97b, #38f9d7);
+    color: white;
+
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.4s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 20px rgba(0, 255, 150, 0.8);
+}
+
+/* ===============================
+   Table Styling + Animation
+   =============================== */
+
+table {
+    margin: 30px auto;
+    width: 90%;
+
+    border-collapse: collapse;
+    border-radius: 15px;
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.35);
+
+    animation: fadeUp 1s ease;
+}
+
+/* Table Fade Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Table Header */
+th {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.45);
+    color: white;
+    font-size: 1.1rem;
+}
+
+/* Table Data */
+td {
+    padding: 12px;
+    color: white;
+    font-size: 1rem;
+}
+
+/* Row Hover Effect */
+tr:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.01);
+    transition: 0.3s;
+}
+
+/* Delete Link */
+.delete {
+    color: #ff4d4d;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.delete:hover {
+    color: yellow;
+    text-shadow: 0px 0px 12px red;
+}
+
+/* ===============================
+   Chart Floating Animation
+   =============================== */
+
+canvas {
+    margin-top: 25px;
+    animation: floatChart 3s ease-in-out infinite;
+}
+
+/* Floating Effect */
+@keyframes floatChart {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ===============================
+   📱 Mobile Responsive Layout
+   =============================== */
+
+/* Tablets */
+@media (max-width: 900px) {
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    /* Buttons Stack */
+    .btn {
+        display: block;
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    /* Forms Full Width */
+    form {
+        width: 95%;
+        padding: 20px;
+    }
+
+    button {
+        width: 90%;
+    }
+
+    /* Scrollable Table */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    /* Charts Fit Mobile */
+    canvas {
+        max-width: 350px;
+        margin: auto;
+    }
+}

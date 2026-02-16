@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Expense</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>➕ Add Expense</h1>
+
+<form method="POST">
+    <input type="number" name="amount" placeholder="Amount" required>
+
+    <select name="category">
+        <option>Food</option>
+        <option>Travel</option>
+        <option>Books</option>
+        <option>Shopping</option>
+        <option>Recharge</option>
+        <option>Medical</option>
+        <option>Entertainment</option>
+        <option>Other</option>
+    </select>
+
+    <input type="text" name="note" placeholder="Note">
+    <button type="submit">Save</button>
+</form>
+
+<a href="/" class="btn">⬅ Back</a>
+
+</body>
+</html>
